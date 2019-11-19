@@ -24,6 +24,7 @@ docker run --rm \
   -e PLUGIN_FUNCTION_NAME=my-function \
   -e PLUGIN_S3_BUCKET=some-bucket \
   -e PLUGIN_FILE_NAME=lambda-directory/lambda-project-1.zip \
+  -e PLUGIN_LAMBDA_REGION=us-east-1 \
   -v $(pwd):$(pwd) \
   -w $(pwd) \
   --privileged \
@@ -40,6 +41,7 @@ steps:
     pull: true
     function_name: my-function
     s3_bucket: some-bucket
+    lambda_region: us-east-1
     file_name: lambda-dir/lambda-project-${DRONE_BUILD_NUMBER}.zip
 ```
 
@@ -73,6 +75,7 @@ steps:
     function_name: my-function
     s3_bucket: some-bucket
     file_name: lambda-dir/revenue-report-${DRONE_BUILD_NUMBER}.zip
+    lambda_region: us-east-1
 
 - name: notify-slack-releases
   image: plugins/slack
